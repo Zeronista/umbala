@@ -2,6 +2,7 @@
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <%@ page import="entity.Blog" %>
 <%@ page import="entity.Subject" %>
+<%@ page import="entity.Lessons" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%
@@ -9,15 +10,19 @@
     session = request.getSession(false);
     String username = (session != null && session.getAttribute("username") != null) ? (String) session.getAttribute("username") : null;
 
-    // Simulate fetching blogs and subjects from the server
+    // Simulate fetching blogs, subjects, and lessons from the server
     List<Blog> blogs = (List<Blog>) request.getAttribute("blogs");
     List<Subject> subjects = (List<Subject>) request.getAttribute("subjects");
+    List<Lessons> lessons = (List<Lessons>) request.getAttribute("lessons");
 
     if (blogs == null) {
         blogs = new ArrayList<>();
     }
     if (subjects == null) {
         subjects = new ArrayList<>();
+    }
+    if (lessons == null) {
+        lessons = new ArrayList<>();
     }
 %>
 <!DOCTYPE html>
@@ -269,6 +274,7 @@
         <ul>
             <li><a href="#" onclick="showContent('blog')">Blog List</a></li>
             <li><a href="#" onclick="showContent('subject')">Subject List</a></li>
+            <li><a href="#" onclick="showContent('lesson')">Lesson List</a></li>
         </ul>
     </div>
 
@@ -287,7 +293,7 @@
             <h1>Quiz Practice</h1>
         </div>
 
-        <!-- Blog/Subject Content -->
+        <!-- Blog/Subject/Lesson Content -->
         <div id="blog-content">
             <h2>Blog List</h2>
             <div class="cards" id="blog-list">
@@ -323,11 +329,29 @@
             </div>
             <div class="pagination" id="subject-pagination"></div>
         </div>
+
+        <div id="lesson-content" style="display: none;"> <!-- Lesson content -->
+            <h2>Lesson List</h2>
+            <div class="cards" id="lesson-list">
+                <% if (lessons != null && !lessons.isEmpty()) { %>
+                <% for (Lessons lesson : lessons) { %>
+                <div class="card">
+                    <img src="data:image/jpeg;base64,<%= new String(java.util.Base64.getEncoder().encode(lesson.getAvatar())) %>" alt="<%= lesson.getTitle() %>">
+                    <h3><%= lesson.getTitle() %></h3>
+                    <p><%= lesson.getContent() %></p>
+                </div>
+                <% } %>
+                <% } else { %>
+                <p>No lessons available.</p>
+                <% } %>
+            </div>
+            <div class="pagination" id="lesson-pagination"></div>
+        </div>
     </div>
 </div>
 
 <script>
-    // Convert server-side blogs and subjects to JavaScript arrays
+    // Convert server-side blogs, subjects, and lessons to JavaScript arrays
     let blogs = [];
     <% for (Blog blog : blogs) { %>
     blogs.push({
@@ -343,6 +367,15 @@
         title: "<%= subject.getTitle() %>",
         description: "<%= subject.getDescription() %>",
         image: "data:image/jpeg;base64,<%= new String(java.util.Base64.getEncoder().encode(subject.getAvatar())) %>"
+    });
+    <% } %>
+
+    let lessons = [];
+    <% for (Lessons lesson : lessons) { %>
+    lessons.push({
+        title: "<%= lesson.getTitle() %>",
+        description: "<%= lesson.getContent() %>",
+        image: "data:image/jpeg;base64,<%= new String(java.util.Base64.getEncoder().encode(lesson.getAvatar())) %>"
     });
     <% } %>
 
@@ -395,14 +428,19 @@
             currentItems = blogs;
             activeContainer = 'blog-list';
             activePagination = 'blog-pagination';
-        } else {
+        } else if (type === 'subject') {
             currentItems = subjects;
             activeContainer = 'subject-list';
             activePagination = 'subject-pagination';
+        } else if (type === 'lesson') {
+            currentItems = lessons;
+            activeContainer = 'lesson-list';
+            activePagination = 'lesson-pagination';
         }
 
         document.getElementById('blog-content').style.display = type === 'blog' ? 'block' : 'none';
         document.getElementById('subject-content').style.display = type === 'subject' ? 'block' : 'none';
+        document.getElementById('lesson-content').style.display = type === 'lesson' ? 'block' : 'none';
 
         paginate(currentItems, activeContainer, activePagination);
     }
