@@ -1,27 +1,20 @@
 package com.example.demo;
 
-import entity.Blog;
 import entity.Subject;
-import java.io.IOException;
+import model.DatabaseConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import model.DatabaseConnection;
 
-@WebServlet(name = "dataServlet", value = "/data")
-public class DataServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public class DataServlet {
+
+    public List<Subject> fetchSubjects() throws SQLException, ClassNotFoundException {
         List<Subject> subjects = new ArrayList<>();
-        List<Blog> blogs = new ArrayList<>();
-
         Connection connection = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -47,38 +40,31 @@ public class DataServlet extends HttpServlet {
                         rs.getBytes("avatar")
                 ));
             }
-            System.out.println("Fetched subjects: " + subjects.size()); // Debug log
-            rs.close();
-            stmt.close();
-
-            // Fetch blogs
-            String sqlBlogs = "SELECT * FROM BlogPosts";
-            stmt = connection.prepareStatement(sqlBlogs);
-            rs = stmt.executeQuery();
-            while (rs.next()) {
-                blogs.add(new Blog(
-                        rs.getInt("id"),
-                        rs.getString("title"),
-                        rs.getString("content"),
-                        rs.getInt("author_id"),
-                        rs.getString("status"),
-                        rs.getTimestamp("created_at"),
-                        rs.getTimestamp("updated_at"),
-                        rs.getBytes("avatar")
-                ));
-            }
-            System.out.println("Fetched blogs: " + blogs.size()); // Debug log
-
-            // Set the data to the request attributes
-            request.setAttribute("subjects", subjects);
-            request.setAttribute("blogs", blogs);
-
-            // Forward to JSP
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
         } finally {
             DatabaseConnection.closeConnection(connection);
+        }
+        return subjects;
+    }
+
+    public static void main(String[] args) {
+        DataServlet dataServlet = new DataServlet();
+        try {
+            List<Subject> subjects = dataServlet.fetchSubjects();
+            for (Subject subject : subjects) {
+                System.out.println("ID: " + subject.getId());
+                System.out.println("Title: " + subject.getTitle());
+                System.out.println("Description: " + subject.getDescription());
+                System.out.println("Category: " + subject.getCategory());
+                System.out.println("Thumbnail URL: " + subject.getThumbnailUrl());
+                System.out.println("Status: " + subject.getStatus());
+                System.out.println("Created By: " + subject.getCreatedBy());
+                System.out.println("Created At: " + subject.getCreatedAt());
+                System.out.println("Updated At: " + subject.getUpdatedAt());
+                //System.out.println("Avatar: " + new String(subject.getAvatar()));
+                System.out.println("-----");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

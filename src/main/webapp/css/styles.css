@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar, .side-menu, .header {
+    background-color: #333;
+    color: #fff;
+}
+
+.navbar {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar input, .navbar .menu a {
+    padding: 5px;
+    font-size: 16px;
+}
+
+.navbar .menu a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.side-menu {
+    width: 200px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.side-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.side-menu ul li {
+    background-color: #444;
+    margin: 15px 0;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.side-menu ul li:hover {
+    background-color: #555;
+}
+
+.content {
+    padding: 30px;
+}
+
+.header {
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.header .logout a, .header .login-button, .header .register-button {
+    background-color: #d32f2f;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
