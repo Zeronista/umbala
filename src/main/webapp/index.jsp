@@ -73,16 +73,16 @@
       <h2>Our Features</h2>
       <div class="features-grid">
         <div class="feature">
-          <h3>Feature 1</h3>
-          <p>Description of feature 1.</p>
+          <h3>Blog Posts</h3>
+          <p>List of blogs for all subjects.</p>
         </div>
         <div class="feature">
-          <h3>Feature 2</h3>
-          <p>Description of feature 2.</p>
+          <h3>Subject Lists</h3>
+          <p>All the subjects available.</p>
         </div>
         <div class="feature">
-          <h3>Feature 3</h3>
-          <p>Description of feature 3.</p>
+          <h3>View Quiz</h3>
+          <p>Work in progress...</p>
         </div>
       </div>
     </div>
