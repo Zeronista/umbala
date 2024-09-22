@@ -37,20 +37,26 @@ public class LoginServlet extends HttpServlet {
 
                 int roleId = rs.getInt("role_id");
                 if (roleId == 3) {
-                    response.sendRedirect("admin.jsp");
+                    response.sendRedirect("../admin.jsp");
                 } else {
                     response.sendRedirect("index.jsp");
                 }
             } else {
                 request.setAttribute("error", "Invalid username or password");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.getRequestDispatcher("jsp/login.jsp").forward(request, response);
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             request.setAttribute("error", "Login failed");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("jsp/login.jsp").forward(request, response);
         } finally {
-            DatabaseConnection.closeConnection(connection);
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

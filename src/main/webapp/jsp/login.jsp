@@ -2,12 +2,13 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="../css/login.css"> <!-- Adjust path if necessary -->
+    <!-- Use absolute path with context -->
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/login.css">
 </head>
 <body>
 <div class="login-container">
     <h2>Login</h2>
-    <form action="LoginServlet" method="post"> <!-- Form submits to LoginServlet -->
+    <form action="<%= request.getContextPath() %>/login" method="post"> <!-- Form submits to LoginServlet -->
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
         <input type="submit" value="Login">
@@ -16,6 +17,7 @@
             <a href="forgot-password.jsp">Forgot Password?</a>
         </div>
     </form>
+
     <% if (request.getAttribute("error") != null) { %>
     <div class="error-message">
         <%= request.getAttribute("error") %>
