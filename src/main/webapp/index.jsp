@@ -18,9 +18,29 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
+
+    <!-- Display login/register or user details based on session -->
     <div class="auth-links">
+      <%
+        String username = (String) session.getAttribute("username");
+        if (username != null) {
+      %>
+      <!-- Display username and logout button when user is logged in -->
+      <div class="user-info">
+        <p>Hello, <%= username %>!</p>
+        <a href="LogoutServlet" class="btn-logout">Logout</a>
+      </div>
+      <%
+      } else {
+      %>
+      <!-- Display login and register buttons if user is not logged in -->
       <a href="jsp/login.jsp" class="btn-login">Login</a>
+
+      <%
+        }
+      %>
     </div>
+
     <div class="mobile-menu-toggle">
       <span></span>
       <span></span>
@@ -28,14 +48,26 @@
     </div>
   </div>
 </header>
+
 <main>
   <section class="hero">
     <div class="container">
       <h2>Welcome to QuizLoco</h2>
       <p>Your ultimate quiz platform</p>
+      <%
+        if (username != null) {
+      %>
+      <p>Welcome back, <%= username %>! Enjoy your personalized quiz experience.</p>
+      <%
+      } else {
+      %>
       <a href="jsp/register.jsp" class="btn btn-register">Register</a>
+      <%
+        }
+      %>
     </div>
   </section>
+
   <section class="features" id="about">
     <div class="container">
       <h2>Our Features</h2>
@@ -55,14 +87,16 @@
       </div>
     </div>
   </section>
+
   <section class="cta" id="services">
     <div class="container">
       <h2>Join Us Today</h2>
       <p>Become a part of QuizLoco and test your knowledge with thousands of quizzes!</p>
-      <a href="#" class="btn btn-cta">Sign Up Now</a>
+      <a href="jsp/register.jsp" class="btn btn-cta">Sign Up Now</a>
     </div>
   </section>
 </main>
+
 <footer id="contact">
   <div class="container">
     <p>&copy; 2024 QuizLoco. All rights reserved.</p>

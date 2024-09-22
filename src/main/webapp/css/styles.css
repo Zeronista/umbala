@@ -135,6 +135,30 @@ nav ul li a:hover {
     background-color: #2980b9;
 }
 
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info p {
+    margin: 0;
+    color: #3498db;
+    font-weight: 700;
+}
+
+.btn-logout {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn-logout:hover {
+    background-color: #c0392b;
+}
+
 /* Features Section */
 .features {
     padding: 3em 0;
