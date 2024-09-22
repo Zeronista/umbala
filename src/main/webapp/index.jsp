@@ -1,62 +1,74 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="jakarta.servlet.http.HttpSession" %>
-<%@ page import="entity.Blog" %>
-<%@ page import="entity.Subject" %>
-<%@ page import="entity.Lessons" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%
-    session = request.getSession(false);
-    String username = (session != null && session.getAttribute("username") != null) ? (String) session.getAttribute("username") : null;
-
-    List<Blog> blogs = (List<Blog>) request.getAttribute("blogs");
-    List<Subject> subjects = (List<Subject>) request.getAttribute("subjects");
-    List<Lessons> lessons = (List<Lessons>) request.getAttribute("lessons");
-
-    if (blogs == null) {
-        blogs = new ArrayList<>();
-    }
-    if (subjects == null) {
-        subjects = new ArrayList<>();
-    }
-    if (lessons == null) {
-        lessons = new ArrayList<>();
-    }
-%>
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Practice</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/scripts.js"></script>
+  <title>QuizLoco</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<%@ include file="fragments/navbar.jsp" %>
-
-<div class="container">
-    <div class="content">
-        <%@ include file="fragments/header.jsp" %>
-
-        <div id="blog-content">
-            <h2>Blog List</h2>
-            <div class="cards" id="blog-list"></div>
-            <div class="pagination" id="blog-pagination"></div>
-        </div>
-
-        <div id="subject-content" style="display: none;">
-            <h2>Subject List</h2>
-            <div class="cards"></div>
-        </div>
-
-        <div id="lesson-content" style="display: none;">
-            <h2>Lesson List</h2>
-            <div class="cards"></div>
-        </div>
+<header>
+  <div class="container">
+    <h1><a href="index.jsp" class="logo">QuizLoco</a></h1>
+    <nav>
+      <ul>
+        <li><a href="index.jsp">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="auth-links">
+      <a href="jsp/login.jsp" class="btn-login">Login</a>
     </div>
+    <div class="mobile-menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="container">
+      <h2>Welcome to QuizLoco</h2>
+      <p>Your ultimate quiz platform</p>
+      <a href="jsp/register.jsp" class="btn btn-register">Register</a>
+    </div>
+  </section>
+  <section class="features" id="about">
+    <div class="container">
+      <h2>Our Features</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <h3>Feature 1</h3>
+          <p>Description of feature 1.</p>
+        </div>
+        <div class="feature">
+          <h3>Feature 2</h3>
+          <p>Description of feature 2.</p>
+        </div>
+        <div class="feature">
+          <h3>Feature 3</h3>
+          <p>Description of feature 3.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cta" id="services">
+    <div class="container">
+      <h2>Join Us Today</h2>
+      <p>Become a part of QuizLoco and test your knowledge with thousands of quizzes!</p>
+      <a href="#" class="btn btn-cta">Sign Up Now</a>
+    </div>
+  </section>
+</main>
+<footer id="contact">
+  <div class="container">
+    <p>&copy; 2024 QuizLoco. All rights reserved.</p>
+  </div>
+</footer>
 
-    <%@ include file="fragments/side-menu.jsp" %>
-</div>
+<script src="js/script.js"></script>
 </body>
 </html>
