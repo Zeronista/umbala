@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="true" %>
 <html>
 <head>
-    <title>View Lessons - QuizLoco</title>
+    <title>Subject Lists - QuizLoco</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/css/fonts.css" rel="stylesheet">
@@ -64,22 +64,15 @@
         </aside>
         <div class="main-content">
             <div class="container">
-                <h2>View Lessons</h2>
-                <p>Here are some sample lessons:</p>
-                <div class="lessons">
-                    <div class="lesson">
-                        <h3>Lesson 1: Introduction to Algebra</h3>
-                        <p>Learn the basics of algebra, including variables, expressions, and equations.</p>
-                    </div>
-                    <div class="lesson">
-                        <h3>Lesson 2: The Solar System</h3>
-                        <p>Explore the planets, moons, and other celestial bodies in our solar system.</p>
-                    </div>
-                    <div class="lesson">
-                        <h3>Lesson 3: World War II Overview</h3>
-                        <p>An overview of the key events and figures of World War II.</p>
-                    </div>
-                </div>
+                <h2>Subject Lists</h2>
+                <p>Browse through the list of available subjects:</p>
+                <ul class="subject-list">
+                    <li>Mathematics</li>
+                    <li>Science</li>
+                    <li>History</li>
+                    <li>Geography</li>
+                    <li>Language Arts</li>
+                </ul>
             </div>
         </div> <!-- End of main-content -->
     </div> <!-- End of content-with-sidebar -->

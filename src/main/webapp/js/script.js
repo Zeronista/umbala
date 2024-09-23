@@ -1,6 +1,10 @@
-const toggle = document.querySelector('.mobile-menu-toggle');
-const nav = document.querySelector('nav ul');
+// js/script.js
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navUl = document.querySelector('nav ul');
 
-toggle.addEventListener('click', () => {
-    nav.classList.toggle('active');
+    mobileMenuToggle.addEventListener('click', function() {
+        navUl.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active');
+    });
 });

@@ -1,7 +1,6 @@
 package com.example.demo;
-
+import Module.HashPassword;
 import java.io.IOException;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 
         try {
             // Hash the entered password for comparison
-            String hashedPassword = hashPassword(password);
+            String hashedPassword = HashPassword.hashPassword(password);
 
             connection = DatabaseConnection.getConnection();
 
@@ -59,8 +58,6 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
             request.setAttribute("error", "Login failed due to server error.");
             request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
         } finally {
             try {
                 if (rs != null) rs.close();
@@ -70,18 +67,5 @@ public class LoginServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-    }
-
-    // Reuse the same method to hash the password during login
-    private String hashPassword(String password) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        byte[] hashedBytes = md.digest(password.getBytes());
-
-        // Convert the hashed bytes into a hexadecimal format
-        StringBuilder sb = new StringBuilder();
-        for (byte b : hashedBytes) {
-            sb.append(String.format("%02x", b));
-        }
-        return sb.toString(); // Return the hashed password as a hexadecimal string
     }
 }
