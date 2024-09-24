@@ -54,8 +54,8 @@
       <h2>Quick Links</h2>
       <ul>
         <li><a href="${pageContext.request.contextPath}/jsp/blog-lists.jsp">Blog Lists</a></li>
-        <li><a href="${pageContext.request.contextPath}/jsp/subject-lists.jsp">Subject Lists</a></li>
-        <li><a href="${pageContext.request.contextPath}/jsp/view-lessons.jsp">View Lessons</a></li>
+        <li><a href="${pageContext.request.contextPath}/jsp/quiz-lists.jsp">Quiz Lists</a></li>
+        <li><a href="${pageContext.request.contextPath}/jsp/view-lessons.jsp">View Quizzes</a></li>
       </ul>
     </aside>
     <div class="main-content">
@@ -88,8 +88,8 @@
               <p>Explore insightful blogs on various subjects.</p>
             </div>
             <div class="feature">
-              <h3>Subject Lists</h3>
-              <p>Browse all available subjects.</p>
+              <h3>Quiz Lists</h3>
+              <p>Browse all available quizzes.</p>
             </div>
             <div class="feature">
               <h3>View Quizzes</h3>

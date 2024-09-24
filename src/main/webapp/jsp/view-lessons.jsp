@@ -57,8 +57,8 @@
             <!-- Sidebar Links -->
             <ul>
                 <li><a href="${pageContext.request.contextPath}/jsp/blog-lists.jsp">Blog Lists</a></li>
-                <li><a href="${pageContext.request.contextPath}/jsp/subject-lists.jsp">Subject Lists</a></li>
-                <li><a href="${pageContext.request.contextPath}/jsp/view-lessons.jsp">View Lessons</a></li>
+                <li><a href="${pageContext.request.contextPath}/jsp/quiz-lists.jsp">Quiz Lists</a></li>
+                <li><a href="${pageContext.request.contextPath}/jsp/view-lessons.jsp">View Quizzes</a></li>
             </ul>
 
         </aside>
