@@ -201,4 +201,34 @@ public class UserDAO {
         }
         return user;
     }
+
+    public User getUserByUsername(String username) {
+        User user = null;
+        String sql = "SELECT * FROM Users WHERE username = ?";
+
+        try (Connection conn = (new DBConnect()).getConnection();
+             PreparedStatement pre = conn.prepareStatement(sql)) {
+            pre.setString(1, username);
+            try (ResultSet rs = pre.executeQuery()) {
+                if (rs.next()) {
+                    user = new User();
+                    user.setId(rs.getInt("id"));
+                    user.setUsername(rs.getString("username"));
+                    user.setEmail(rs.getString("email"));
+                    user.setPasswordHash(rs.getString("password_hash"));
+                    user.setFullName(rs.getString("full_name"));
+                    user.setGender(rs.getString("gender"));
+                    user.setRoleId(rs.getInt("role_id"));
+                    user.setStatus(rs.getString("status"));
+                    user.setCreatedAt(rs.getTimestamp("created_at"));
+                    user.setUpdatedAt(rs.getTimestamp("updated_at"));
+                    user.setAvatar(rs.getBytes("avatar")); // If you have an avatar column
+                }
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
 }

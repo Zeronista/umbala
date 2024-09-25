@@ -27,7 +27,7 @@
       %>
       <!-- Display username and logout button when user is logged in -->
       <div class="user-info">
-        <p>Hello, <%= username %>!</p>
+        <p>Hello, <a href="${pageContext.request.contextPath}/jsp/user-profile.jsp"><%= username %></a>!</p>
         <a href="LogoutServlet" class="btn-logout">Logout</a>
       </div>
       <%

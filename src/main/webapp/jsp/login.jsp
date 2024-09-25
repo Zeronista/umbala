@@ -12,7 +12,7 @@
         <input type="password" name="password" placeholder="Password" required>
         <input type="submit" value="Login">
         <div class="forgot-password">
-            <a href="lostpass.jsp">Forgot Password?</a>
+            <a href=<%= request.getContextPath() %>/jsp/lostpass.jsp>Forgot Password?</a>
         </div>
     </form>
 
