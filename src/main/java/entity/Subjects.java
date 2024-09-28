@@ -1,5 +1,6 @@
 package entity;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 public class Subjects {
@@ -13,14 +14,15 @@ public class Subjects {
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private byte[] avatar;
+    private List<Lessons> lessons;
 
     // Default constructor
     public Subjects() {}
 
     // Parameterized constructor
     public Subjects(int id, String title, String description, String category,
-                   String thumbnailUrl, String status, int createdBy,
-                   Timestamp createdAt, Timestamp updatedAt, byte[] avatar) {
+                   String thumbnailUrl, String status, int createdBy, byte[] avatar,
+                   Timestamp createdAt, Timestamp updatedAt, List<Lessons> lessons) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -28,8 +30,21 @@ public class Subjects {
         this.thumbnailUrl = thumbnailUrl;
         this.status = status;
         this.createdBy = createdBy;
+        this.avatar = avatar;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.lessons = lessons;
+    }
+
+    // Constructor không có id và timestamps (sử dụng khi tạo mới)
+    public Subjects(String title, String description, String category,
+                   String thumbnailUrl, String status, int createdBy, byte[] avatar) {
+        this.title = title;
+        this.description = description;
+        this.category = category;
+        this.thumbnailUrl = thumbnailUrl;
+        this.status = status;
+        this.createdBy = createdBy;
         this.avatar = avatar;
     }
 

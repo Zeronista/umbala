@@ -1,6 +1,7 @@
 package entity;
 
 import java.sql.Timestamp;
+
 public class Lessons {
     private int id;
     private int subjectId;
@@ -15,7 +16,7 @@ public class Lessons {
     // Default constructor
     public Lessons() {}
 
-    // Parameterized constructor
+    // Constructor đầy đủ
     public Lessons(int id, int subjectId, String title, String content, int order,
                   String status, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
@@ -26,6 +27,15 @@ public class Lessons {
         this.status = status;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    // Constructor không có id và timestamps (sử dụng khi tạo mới)
+    public Lessons(int subjectId, String title, String content, int order, String status) {
+        this.subjectId = subjectId;
+        this.title = title;
+        this.content = content;
+        this.order = order;
+        this.status = status;
     }
 
     // Getters and setters
