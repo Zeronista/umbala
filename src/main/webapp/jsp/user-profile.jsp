@@ -40,7 +40,7 @@
 <body>
 <header>
     <div class="container">
-        <h1><a href="index.jsp" class="logo">QuizLoco</a></h1>
+        <h1><a href="${pageContext.request.contextPath}/index.jsp" class="logo">QuizLoco</a></h1>
         <nav>
             <ul>
                 <li><a href="index.jsp">Home</a></li>
@@ -80,7 +80,7 @@
             %>
         </div>
         <div class="profile-actions">
-            <a href="edit-profile.jsp" class="btn btn-edit">Edit Profile</a>
+            <a href="${pageContext.request.contextPath}/jsp/edit-profile.jsp" class="btn btn-edit">Edit Profile</a>
             <!-- Add more actions like changing password, etc. -->
         </div>
     </div>

@@ -12,11 +12,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.DatabaseConnection;
+import Module.*;
+
+import static Module.HashPassword.hashPassword;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String username = request.getParameter("username");
         String password = request.getParameter("password_hash"); // Raw password
         String email = request.getParameter("email");
@@ -63,13 +68,16 @@ public class RegisterServlet extends HttpServlet {
             stmt.executeUpdate();
 
             // Redirect to login page after successful registration
-            response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
+            ReturnMail mail = new ReturnMail();
+            String capcha = mail.generateVerificationCode();
+            mail.sendMail(email,capcha);
+            session.setAttribute("email", email);
+            session.setAttribute("capcha", capcha);
+            response.sendRedirect(request.getContextPath() + "/jsp/verify-register.jsp");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             request.setAttribute("error", "Registration failed due to server error.");
             request.getRequestDispatcher("/jsp/register.jsp").forward(request, response);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
         } finally {
             try {
                 if (rs != null) rs.close();
@@ -79,18 +87,5 @@ public class RegisterServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-    }
-
-    // Method to hash the password using SHA-256
-    private String hashPassword(String password) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        byte[] hashedBytes = md.digest(password.getBytes()); // Hash the password bytes
-
-        // Convert the hashed bytes into a hexadecimal format
-        StringBuilder sb = new StringBuilder();
-        for (byte b : hashedBytes) {
-            sb.append(String.format("%02x", b));
-        }
-        return sb.toString(); // Return the hashed password as a hexadecimal string
     }
 }
