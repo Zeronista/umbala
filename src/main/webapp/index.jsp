@@ -30,7 +30,7 @@
             <div class="user-info">
                 <a href="${pageContext.request.contextPath}/jsp/user-profile.jsp" class="user-profile">
                     <i class="fas fa-user-circle"></i>
-                    <%= username %>
+                    <span class="username">Welcome, <%= username %></span> <!-- Display Username with welcome message -->
                 </a>
                 <a href="LogoutServlet" class="btn-logout">Logout</a>
             </div>
@@ -48,6 +48,8 @@
         </button>
     </div>
 </header>
+
+
 
 <main>
     <section id="home" class="hero">

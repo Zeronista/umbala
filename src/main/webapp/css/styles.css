@@ -110,6 +110,52 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
+/* Auth Links and User Profile Styling */
+.auth-links {
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Add space between username and logout button */
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.user-profile i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    color: #3498db; /* Avatar icon color */
+}
+
+.username {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.btn-logout {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #c0392b;
+}
+
+
 /* Hero section */
 .hero {
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../img/hero-bg.png') no-repeat center center/cover;

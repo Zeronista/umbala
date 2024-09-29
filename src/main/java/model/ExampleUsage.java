@@ -14,7 +14,7 @@ public class ExampleUsage {
             connection = DatabaseConnection.getConnection();
 
             // Write your SQL query
-            String sql = "SELECT * FROM user";
+            String sql = "SELECT * FROM users";
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             // Execute the query and retrieve results
