@@ -144,14 +144,6 @@ nav ul li a:hover {
     background-color: #2980b9;
 }
 
-/* Hero section update */
-.cta-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
 .cta-button.secondary {
     background-color: transparent;
     border: 2px solid #fff;
@@ -160,8 +152,6 @@ nav ul li a:hover {
 .cta-button.secondary:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
-
-
 
 /* Features section */
 .features {
@@ -266,9 +256,6 @@ nav ul li a:hover {
     margin-bottom: 3rem;
 }
 
-/* Continuing from the previous styles */
-
-/* Leaderboard section (continued) */
 .leaderboard table {
     width: 100%;
     border-collapse: collapse;
@@ -431,8 +418,6 @@ nav ul li a:hover {
     border-radius: 10px;
 }
 
-
-
 /* Footer styles */
 footer {
     background-color: #333;
@@ -561,29 +546,13 @@ footer {
     to { opacity: 1; }
 }
 
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .fade-in {
     animation: fadeIn 1s ease-in;
-}
-
-@keyframes slideInFromLeft {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0); }
-}
-
-.slide-in-left {
-    animation: slideInFromLeft 0.5s ease-out;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .fade-in-up {
@@ -636,9 +605,16 @@ footer {
     outline-offset: 2px;
 }
 
+.app-button:focus,
+.mode-card:focus,
+.testimonial:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
 /* Print styles */
 @media print {
-    header, footer, .cta {
+    header, footer, .cta, .study-modes, .create-quiz, .testimonials, .mobile-app {
         display: none;
     }
 
@@ -648,24 +624,6 @@ footer {
     }
 
     a[href]::after {
-        content: " (" attr(href) ")";
-    }
-}
-
-/* Accessibility improvements */
-.app-button:focus,
-.mode-card:focus,
-.testimonial:focus {
-    outline: 2px solid #3498db;
-    outline-offset: 2px;
-}
-
-/* Print styles update */
-@media print {
-    .study-modes,
-    .create-quiz,
-    .testimonials,
-    .mobile-app {
-        display: none;
+        content: " (" attr(href) ") ";
     }
 }
