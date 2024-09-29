@@ -14,7 +14,7 @@ public class ExampleUsage {
             connection = DatabaseConnection.getConnection();
 
             // Write your SQL query
-            String sql = "SELECT * FROM learningmanagementsystem.subjects";
+            String sql = "SELECT * FROM user";
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             // Execute the query and retrieve results
@@ -22,7 +22,7 @@ public class ExampleUsage {
 
             // Process the result set
             while (rs.next()) {
-                String columnData = rs.getString("title");
+                String columnData = rs.getString("username");
 
                 System.out.println("Data: " + columnData);
             }
